@@ -4,8 +4,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
 
-    public float lateralspeed;
+    public float lateralspeed = 10f;
 
+    public float vertical_speed;// = 2f * lateralspeed;
     void Start()
     {
         rb.useGravity = true;        
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        vertical_speed = 2f * lateralspeed;
         //rb.AddForce(0,0,forwardforce*Time.deltaTime);
 
         if( Input.GetKey("d"))
@@ -24,34 +26,34 @@ public class PlayerMovement : MonoBehaviour
             //transform.SetPositionAndRotation(transform.TransformPoint(transform.localPosition+(Vector3.right*lateralspeed)), transform.rotation);
             //rb.AddForce(-lateralforce*Time.deltaTime,0,0);
         }
-        else if( Input.GetKey("a"))
+        if( Input.GetKey("a"))
         {
             //MOVE RIGHT
             Debug.Log("left"+-transform.right);
             rb.AddForce((-transform.right)*lateralspeed);
             //rb.AddForce(lateralforce*Time.deltaTime,0,0);
         }
-        else if( Input.GetKey("w"))
+        if( Input.GetKey("w"))
         {
             //FORWARD
             rb.AddForce(transform.forward*lateralspeed);
         }
-        else if( Input.GetKey("s"))
+        if( Input.GetKey("s"))
         {
             //BACK
             rb.AddForce((-transform.forward)*lateralspeed);
         }
-        else if( Input.GetKey("space"))
+        if( Input.GetKey("space"))
         {
             //JUMP
-            rb.AddForce(transform.up*lateralspeed*6);
+            rb.AddForce(Vector3.up*vertical_speed);
         }
-        else if( Input.GetKey("e"))
+        if( Input.GetKey("q"))
         {
             //COUNTER CLOCKWISE - LEFT TURN
             transform.RotateAround(transform.position, Vector3.up, 30*Time.deltaTime);
         }
-        else if( Input.GetKey("q"))
+        if( Input.GetKey("e"))
         {
             //COUNTER CLOCKWISE - RIGHT TURN
             transform.RotateAround(transform.position, Vector3.up, -30*Time.deltaTime);
