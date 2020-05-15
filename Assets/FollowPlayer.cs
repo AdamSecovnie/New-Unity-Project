@@ -9,6 +9,12 @@ public class FollowPlayer : MonoBehaviour
     public Vector3 offset;
     public float smoothSpeed = 0.25f;
 
+    private void Start() 
+    {
+        //Vector3 follow_point = transform.parent.transform.TransformPoint(transform.localPosition);
+        //transform.Translate( transform.position - transform.position, Space.World ) ;
+    }
+
     void FixedUpdate()
     {
         //translate our offset from our position, relative to parent, and save as world position

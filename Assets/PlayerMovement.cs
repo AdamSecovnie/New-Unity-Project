@@ -51,12 +51,12 @@ public class PlayerMovement : MonoBehaviour
         if( Input.GetKey("q"))
         {
             //COUNTER CLOCKWISE - LEFT TURN
-            transform.RotateAround(transform.position, Vector3.up, 30*Time.deltaTime);
+            transform.RotateAround(transform.position, Vector3.up, 60*Time.deltaTime);
         }
         if( Input.GetKey("e"))
         {
             //COUNTER CLOCKWISE - RIGHT TURN
-            transform.RotateAround(transform.position, Vector3.up, -30*Time.deltaTime);
+            transform.RotateAround(transform.position, Vector3.up, -60*Time.deltaTime);
         }
     }
 }
