@@ -4,17 +4,11 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
 
-    public float forwardforce = 100f;
-    public float lateralforce = 60f;
+    public float lateralspeed;
 
-    private Transform trans;
-
-    public float force_accumulator = 2.3f;//Math.E;
-    // Start is called before the first frame update
     void Start()
     {
-        rb.useGravity = true;
-        
+        rb.useGravity = true;        
     }
 
     // Update is called once per frame
@@ -22,30 +16,35 @@ public class PlayerMovement : MonoBehaviour
     {
         //rb.AddForce(0,0,forwardforce*Time.deltaTime);
 
-        if( Input.GetKey("a"))
+        if( Input.GetKey("d"))
         {
-            //RIGHT
-            rb.AddForce(-lateralforce*Time.deltaTime,0,0);
+            //MOVE LEFT
+            Debug.Log("right"+transform.right);
+            rb.AddForce(transform.right*lateralspeed);
+            //transform.SetPositionAndRotation(transform.TransformPoint(transform.localPosition+(Vector3.right*lateralspeed)), transform.rotation);
+            //rb.AddForce(-lateralforce*Time.deltaTime,0,0);
         }
-        else if( Input.GetKey("d"))
+        else if( Input.GetKey("a"))
         {
-            //LEFT
-            rb.AddForce(lateralforce*Time.deltaTime,0,0);
+            //MOVE RIGHT
+            Debug.Log("left"+-transform.right);
+            rb.AddForce((-transform.right)*lateralspeed);
+            //rb.AddForce(lateralforce*Time.deltaTime,0,0);
         }
         else if( Input.GetKey("w"))
         {
             //FORWARD
-            rb.AddForce(0,0,forwardforce*Time.deltaTime);
+            rb.AddForce(transform.forward*lateralspeed);
         }
         else if( Input.GetKey("s"))
         {
             //BACK
-            rb.AddForce(0,0,-forwardforce*Time.deltaTime);
+            rb.AddForce((-transform.forward)*lateralspeed);
         }
         else if( Input.GetKey("space"))
         {
-            //BREAK
-            //rb.AddForce(lateralforce*Time.deltaTime,0,forwardforce*Time.deltaTime);
+            //JUMP
+            rb.AddForce(transform.up*lateralspeed*6);
         }
         else if( Input.GetKey("e"))
         {
@@ -54,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if( Input.GetKey("q"))
         {
+            //COUNTER CLOCKWISE - RIGHT TURN
             transform.RotateAround(transform.position, Vector3.up, -30*Time.deltaTime);
         }
     }

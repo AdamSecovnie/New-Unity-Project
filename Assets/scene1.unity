@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1319336191}
   forwardforce: 1900
-  lateralforce: 500
+  lateralspeed: 10
   force_accumulator: 2.3
 --- !u!114 &1319336197
 MonoBehaviour:
