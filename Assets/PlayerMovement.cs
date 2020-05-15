@@ -37,11 +37,13 @@ public class PlayerMovement : MonoBehaviour
         {
             //FORWARD
             rb.AddForce(transform.forward*lateralspeed);
+            //rb.AddTorque(Vector3.right);
         }
         if( Input.GetKey("s"))
         {
             //BACK
             rb.AddForce((-transform.forward)*lateralspeed);
+            //rb.AddTorque(-Vector3.right);
         }
         if( Input.GetKey("space"))
         {
@@ -57,6 +59,18 @@ public class PlayerMovement : MonoBehaviour
         {
             //COUNTER CLOCKWISE - RIGHT TURN
             transform.RotateAround(transform.position, Vector3.up, -60*Time.deltaTime);
+        }
+        if( Input.GetKey("f"))
+        {
+            //TILT BACK - TILT UP
+            //rb.AddTorque(Vector3.right);
+            transform.RotateAround(transform.position, Vector3.right, -60*Time.deltaTime);
+        }
+        if( Input.GetKey("r"))
+        {
+            //TILT FORWARD - TILT DOWN
+            //rb.AddTorque(-Vector3.right);
+            transform.RotateAround(transform.position, -Vector3.right, -60*Time.deltaTime);
         }
     }
 }
