@@ -24,11 +24,11 @@ MonoBehaviour:
   noiseLayers:
   - enabled: 1
     noiseSettings:
-      strength: 1
-      numLayers: 1
-      baseRoughness: 1
-      roughness: 1
+      strength: 0.4
+      numLayers: 3
+      baseRoughness: 2
+      roughness: 2
       persistence: 1
       center: {x: 0, y: 0, z: 0}
-      minValue: 0
+      minValue: 0.7
   material: {fileID: 13400000, guid: 2b612121b373e29429a9e21dfb0366bf, type: 2}

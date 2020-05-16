@@ -37,15 +37,15 @@ public class SphereMovement : MonoBehaviour
         {
             //FORWARD
             //rb.AddForce(transform.forward*lateralspeed);
-            rb.AddTorque(Vector3.right);
+            rb.AddTorque(Vector3.right*vertical_speed);
         }
         if( Input.GetKey("s"))
         {
             //BACK
             //rb.AddForce((-transform.forward)*lateralspeed);
-            rb.AddTorque(-Vector3.right);
+            rb.AddTorque(-Vector3.right*vertical_speed);
         }
-        if( Input.GetKey("space"))
+        if( Input.GetKeyDown("space"))
         {
             //JUMP
             rb.AddForce(Vector3.up*vertical_speed);
