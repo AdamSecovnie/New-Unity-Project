@@ -14,10 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetRadius: 1.6
   noiseSettings:
-    strength: 0.2
-    numLayers: 5
-    baseRoughness: 0.9
-    roughness: 1.83
-    persistence: 0.54
+    strength: 1
+    numLayers: 1
+    baseRoughness: 1
+    roughness: 1
+    persistence: 1
     center: {x: 0, y: 0, z: 0}
-    minValue: 0.6
+    minValue: 0
+  noiseLayers:
+  - enabled: 1
+    noiseSettings:
+      strength: 0.26
+      numLayers: 2
+      baseRoughness: 5
+      roughness: 2
+      persistence: -0.3
+      center: {x: 0, y: 0, z: 0}
+      minValue: 0.4
+  - enabled: 1
+    noiseSettings:
+      strength: 0.1
+      numLayers: 1
+      baseRoughness: 8
+      roughness: 4
+      persistence: -0.3
+      center: {x: 0, y: 0, z: 0}
+      minValue: 0.4
+  material: {fileID: 13400000, guid: 2b612121b373e29429a9e21dfb0366bf, type: 2}

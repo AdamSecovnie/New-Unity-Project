@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class TerrainFace 
 {
-    ShapeGenerator shapeGenerator;
+    PlanetShapeGenerator shapeGenerator;
     Mesh mesh;
+    MeshCollider meshCollider;
     int resolution;
     Vector3 localUp;
     Vector3 axisA;
     Vector3 axisB;
 
-    public TerrainFace(ShapeGenerator shapeGenerator, Mesh mesh, int resolution, Vector3 localUp)
+    public TerrainFace(PlanetShapeGenerator shapeGenerator, Mesh mesh, int resolution, Vector3 localUp)
     {
         this.shapeGenerator = shapeGenerator;
         this.mesh = mesh;
@@ -21,7 +22,7 @@ public class TerrainFace
         axisA = new Vector3(localUp.y, localUp.z, localUp.x);
         axisB = Vector3.Cross(localUp, axisA);
     }
-    public void ConstructMesh()
+    public void ConstructMesh(PhysicMaterial material)
     {
         Vector3[] vertices = new Vector3[resolution * resolution];
         int[] triangles = new int[(resolution-1) * (resolution-1) * 6];
@@ -57,6 +58,14 @@ public class TerrainFace
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
+
+        
+
+        // meshCollider = new MeshCollider();
+        // meshCollider.material = material;
+        // meshCollider.convex = true;
+        // meshCollider.enabled = true;
+        // meshCollider.sharedMesh = mesh;
     }
 
 }

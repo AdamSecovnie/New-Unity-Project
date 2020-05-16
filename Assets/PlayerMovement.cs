@@ -9,6 +9,10 @@ public class PlayerMovement : MonoBehaviour
     public float vertical_speed;// = 2f * lateralspeed;
     void Start()
     {
+        if (!rb)
+        {
+            this.rb = this.gameObject.GetComponent(typeof(Rigidbody)) as Rigidbody;
+        }
         rb.useGravity = true;        
     }
 
@@ -45,10 +49,10 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce((-transform.forward)*lateralspeed);
             //rb.AddTorque(-Vector3.right);
         }
-        if( Input.GetKey("space"))
+        if( Input.GetKeyDown("space"))
         {
             //JUMP
-            rb.AddForce(Vector3.up*vertical_speed);
+            rb.AddForce(Vector3.up*vertical_speed*6);
         }
         if( Input.GetKey("q"))
         {
@@ -64,13 +68,25 @@ public class PlayerMovement : MonoBehaviour
         {
             //TILT BACK - TILT UP
             //rb.AddTorque(Vector3.right);
-            transform.RotateAround(transform.position, Vector3.right, -60*Time.deltaTime);
+            transform.RotateAround(transform.position, Vector3.forward, -60*Time.deltaTime);
         }
         if( Input.GetKey("r"))
         {
             //TILT FORWARD - TILT DOWN
             //rb.AddTorque(-Vector3.right);
-            transform.RotateAround(transform.position, -Vector3.right, -60*Time.deltaTime);
+            transform.RotateAround(transform.position, -Vector3.forward, -60*Time.deltaTime);
+        }
+
+        //Keep player head up
+        if(transform.rotation.x > 1 || transform.rotation.x < -1)
+        {
+            //force x toward 0
+            //transform.SetPositionAndRotation(Vector3.Vector3());
+        }
+        if(transform.rotation.z > 1 || transform.rotation.z < -1)
+        {
+            //force z toward 0
+            //transform.SetPositionAndRotation(Vector3.Vector3());
         }
     }
 }

@@ -19,8 +19,6 @@ public class FollowPlayer : MonoBehaviour
     {
         //translate our offset from our position, relative to parent, and save as world position
         Vector3 follow_point = transform.parent.transform.TransformPoint(transform.localPosition);
-
-        Debug.Log("follow point:["+follow_point+"] ; player local ["+player.localPosition+"]");
         
         transform.SetPositionAndRotation(follow_point, player.transform.rotation)
 ;    }

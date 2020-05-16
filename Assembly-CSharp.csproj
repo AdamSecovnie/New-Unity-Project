@@ -36,20 +36,19 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\ColorSettings.cs" />
      <Compile Include="Assets\FollowPlayer.cs" />
      <Compile Include="Assets\Noise.cs" />
      <Compile Include="Assets\NoiseFilter.cs" />
      <Compile Include="Assets\NoiseSettings.cs" />
      <Compile Include="Assets\Planet.cs" />
+     <Compile Include="Assets\PlanetColorSettings.cs" />
+     <Compile Include="Assets\PlanetShapeGenerator.cs" />
+     <Compile Include="Assets\PlanetShapeSettings.cs" />
      <Compile Include="Assets\PlayerCollision.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
-     <Compile Include="Assets\ShapeGenerator.cs" />
-     <Compile Include="Assets\ShapeSettings.cs" />
      <Compile Include="Assets\SphereMovement.cs" />
      <Compile Include="Assets\TerrainFace.cs" />
      <Compile Include="Assets\groundshift.cs" />
-     <Compile Include="Assets\lightPosition.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

@@ -7,15 +7,14 @@ public class Planet : MonoBehaviour
     [Range(2,256)]
     public int resolution = 10;
     public bool autoUpdate = true;
-    public ShapeSettings shapeSettings;
-    public ColorSettings colorSettings;
+    public PlanetShapeSettings shapeSettings;
+    public PlanetColorSettings colorSettings;
 
     [HideInInspector]
     public bool shapeSettingsFoldout;
     [HideInInspector]
     public bool colorSettingsFoldout;
-    public ShapeGenerator shapeGenerator;
-    
+    public PlanetShapeGenerator shapeGenerator;    
 
     [SerializeField,HideInInspector]
     MeshFilter[] meshFilters;
@@ -26,10 +25,14 @@ public class Planet : MonoBehaviour
     // }
     void Initialize()
     {
+        if(!this.gameObject.GetComponent(typeof(Rigidbody)))
+        {
+            this.gameObject.AddComponent<Rigidbody>().mass = 1;
+        }
         if(shapeSettings==null){
             Debug.Log("nullshapesettings...");
         }
-        shapeGenerator = new ShapeGenerator(shapeSettings);
+        shapeGenerator = new PlanetShapeGenerator(shapeSettings);
 
         if(meshFilters == null || meshFilters.Length == 0)
         {
@@ -47,13 +50,36 @@ public class Planet : MonoBehaviour
                 meshObj.transform.parent = transform;
 
                 meshObj.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
+                meshObj.AddComponent<MeshCollider>().convex = true;
+                MeshCollider meshCollider = meshObj.GetComponent(typeof(MeshCollider)) as  MeshCollider;
+                if(meshCollider)
+                {
+                    Debug.Log("got meshcollider with convex = ["+meshCollider.convex+"]");
+                }
+                else
+                {
+                    Debug.Log("got no mesh collider");
+                }
+                meshCollider.material = shapeSettings.material;
+                
+                //meshObj.GetComponent(typeof(MeshCollider)).
+                //meshObj.GetComponent(typeof(MeshCollider)).
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 meshFilters[i].sharedMesh = new Mesh();
+
+                //MeshFilter mf = meshFilters[i].GetComponent(typeof(MeshFilter)) as MeshFilter;
+                meshCollider.sharedMesh  = meshFilters[i].mesh;
+
+                // meshCollider.parent = meshObj;
+                // meshCollider.sharedMesh = meshFilters[i].sharedMesh;
+                // meshCollider.material = shapeSettings.material;
+                // meshCollider.convex = true;
+                // meshCollider.enabled = true;
             }
 
             terrainFaces[i] = new TerrainFace(shapeGenerator, meshFilters[i].sharedMesh, resolution, directions[i]);
         }
-    }
+    }   
 
     public void GeneratePlanet()
     {
@@ -84,7 +110,7 @@ public class Planet : MonoBehaviour
     {
         foreach (TerrainFace face in terrainFaces)
         {
-            face.ConstructMesh();
+            face.ConstructMesh(shapeSettings.material);
         }
     }
 
