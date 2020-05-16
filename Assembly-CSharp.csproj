@@ -42,6 +42,7 @@
      <Compile Include="Assets\NoiseSettings.cs" />
      <Compile Include="Assets\Planet.cs" />
      <Compile Include="Assets\PlanetColorSettings.cs" />
+     <Compile Include="Assets\PlanetGrav.cs" />
      <Compile Include="Assets\PlanetShapeGenerator.cs" />
      <Compile Include="Assets\PlanetShapeSettings.cs" />
      <Compile Include="Assets\PlayerCollision.cs" />

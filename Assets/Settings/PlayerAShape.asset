@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c48c5a76a3f36740b7a5da2389ef650, type: 3}
   m_Name: PlayerAShape
   m_EditorClassIdentifier: 
-  planetRadius: 1.1
+  planetRadius: 50
   noiseSettings:
     strength: 2
     numLayers: 2
@@ -24,11 +24,20 @@ MonoBehaviour:
   noiseLayers:
   - enabled: 1
     noiseSettings:
-      strength: 0.4
-      numLayers: 3
-      baseRoughness: 2
-      roughness: 2
+      strength: 0.2
+      numLayers: 2
+      baseRoughness: 1
+      roughness: 1
       persistence: 1
       center: {x: 0, y: 0, z: 0}
-      minValue: 0.7
+      minValue: 0.8
+  - enabled: 1
+    noiseSettings:
+      strength: 0.4
+      numLayers: 2
+      baseRoughness: 1.5
+      roughness: 1.5
+      persistence: 0.5
+      center: {x: 0, y: 0, z: 0}
+      minValue: 0.9
   material: {fileID: 13400000, guid: 2b612121b373e29429a9e21dfb0366bf, type: 2}

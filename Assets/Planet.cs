@@ -52,29 +52,12 @@ public class Planet : MonoBehaviour
                 meshObj.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
                 meshObj.AddComponent<MeshCollider>().convex = true;
                 MeshCollider meshCollider = meshObj.GetComponent(typeof(MeshCollider)) as  MeshCollider;
-                if(meshCollider)
-                {
-                    Debug.Log("got meshcollider with convex = ["+meshCollider.convex+"]");
-                }
-                else
-                {
-                    Debug.Log("got no mesh collider");
-                }
-                meshCollider.material = shapeSettings.material;
                 
-                //meshObj.GetComponent(typeof(MeshCollider)).
-                //meshObj.GetComponent(typeof(MeshCollider)).
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 meshFilters[i].sharedMesh = new Mesh();
 
-                //MeshFilter mf = meshFilters[i].GetComponent(typeof(MeshFilter)) as MeshFilter;
                 meshCollider.sharedMesh  = meshFilters[i].mesh;
-
-                // meshCollider.parent = meshObj;
-                // meshCollider.sharedMesh = meshFilters[i].sharedMesh;
-                // meshCollider.material = shapeSettings.material;
-                // meshCollider.convex = true;
-                // meshCollider.enabled = true;
+                meshCollider.material = shapeSettings.material;
             }
 
             terrainFaces[i] = new TerrainFace(shapeGenerator, meshFilters[i].sharedMesh, resolution, directions[i]);

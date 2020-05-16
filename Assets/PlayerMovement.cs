@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
         {
             this.rb = this.gameObject.GetComponent(typeof(Rigidbody)) as Rigidbody;
         }
-        rb.useGravity = true;        
+        rb.useGravity = false;        
     }
 
     // Update is called once per frame
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         if( Input.GetKeyDown("space"))
         {
             //JUMP
-            rb.AddForce(Vector3.up*vertical_speed*6);
+            rb.AddForce(-transform.up*vertical_speed*6);
         }
         if( Input.GetKey("q"))
         {
@@ -68,13 +68,13 @@ public class PlayerMovement : MonoBehaviour
         {
             //TILT BACK - TILT UP
             //rb.AddTorque(Vector3.right);
-            transform.RotateAround(transform.position, Vector3.forward, -60*Time.deltaTime);
+            transform.RotateAround(transform.position, Vector3.right, -60*Time.deltaTime);
         }
         if( Input.GetKey("r"))
         {
             //TILT FORWARD - TILT DOWN
             //rb.AddTorque(-Vector3.right);
-            transform.RotateAround(transform.position, -Vector3.forward, -60*Time.deltaTime);
+            transform.RotateAround(transform.position, -Vector3.right, -60*Time.deltaTime);
         }
 
         //Keep player head up
