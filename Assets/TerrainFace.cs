@@ -58,14 +58,6 @@ public class TerrainFace
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
-
-        
-
-        // meshCollider = new MeshCollider();
-        // meshCollider.material = material;
-        // meshCollider.convex = true;
-        // meshCollider.enabled = true;
-        // meshCollider.sharedMesh = mesh;
     }
 
 }

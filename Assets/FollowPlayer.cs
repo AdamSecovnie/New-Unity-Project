@@ -7,7 +7,7 @@ public class FollowPlayer : MonoBehaviour
     
     public Transform player;
     public Vector3 offset;
-    public float smoothSpeed = 0.25f;
+    public float smoothSpeed = 0.125f;
 
     private void Start() 
     {

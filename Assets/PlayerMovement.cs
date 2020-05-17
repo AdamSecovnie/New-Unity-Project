@@ -4,9 +4,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
 
-    public float lateralspeed = 10f;
+    public float lateralspeed = 1.1f;
 
-    public float vertical_speed;// = 2f * lateralspeed;
+    public float vertical_speed = 0.5f;// = 2f * lateralspeed;
     void Start()
     {
         if (!rb)
@@ -57,24 +57,24 @@ public class PlayerMovement : MonoBehaviour
         if( Input.GetKey("q"))
         {
             //COUNTER CLOCKWISE - LEFT TURN
-            transform.RotateAround(transform.position, Vector3.up, 60*Time.deltaTime);
+            transform.RotateAround(transform.position, transform.up, 60*Time.deltaTime);
         }
         if( Input.GetKey("e"))
         {
             //COUNTER CLOCKWISE - RIGHT TURN
-            transform.RotateAround(transform.position, Vector3.up, -60*Time.deltaTime);
+            transform.RotateAround(transform.position, transform.up, -60*Time.deltaTime);
         }
         if( Input.GetKey("f"))
         {
             //TILT BACK - TILT UP
             //rb.AddTorque(Vector3.right);
-            transform.RotateAround(transform.position, Vector3.right, -60*Time.deltaTime);
+            transform.RotateAround(transform.position, transform.right, -60*Time.deltaTime);
         }
         if( Input.GetKey("r"))
         {
             //TILT FORWARD - TILT DOWN
             //rb.AddTorque(-Vector3.right);
-            transform.RotateAround(transform.position, -Vector3.right, -60*Time.deltaTime);
+            transform.RotateAround(transform.position, -transform.right, -60*Time.deltaTime);
         }
 
         //Keep player head up
