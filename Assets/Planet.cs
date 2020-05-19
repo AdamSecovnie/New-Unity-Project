@@ -20,10 +20,7 @@ public class Planet : MonoBehaviour
     MeshFilter[] meshFilters;
     TerrainFace[] terrainFaces;
 
-    //  private void OnValidate() {
-    //     GeneratePlanet();
-    // }
-    void Initialize()
+     void Initialize()
     {
         if(!this.gameObject.GetComponent(typeof(Rigidbody)))
         {
