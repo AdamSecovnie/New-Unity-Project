@@ -2,62 +2,130 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody rb;
+    private Rigidbody rb;
 
-    public float lateralspeed = 10f;
+    private Transform transformOfDown;
 
-    public float vertical_speed;// = 2f * lateralspeed;
+    public float speedModifier = 40f;
+
     void Start()
     {
-        rb.useGravity = true;        
+        this.rb = this.gameObject.GetComponent<Rigidbody>();
+        rb.useGravity = false;
+        
+        // this.transformOfDown = this.GetComponentInParent<PlanetGrav>().planet.GetComponentInParent<Transform>();
+        
+        // if(!transformOfDown)
+        // {
+        //     Debug.LogError("missing transform of down in player movement");
+        // }
+        // else
+        // {
+        //     Debug.Log("Using ["+transformOfDown.gameObject.name+"] for ["+this.gameObject.name+"] in Player Movement");
+        // }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        vertical_speed = 2f * lateralspeed;
-        //rb.AddForce(0,0,forwardforce*Time.deltaTime);
 
+        //Vector3 localDown = transform.InverseTransformDirection(transformOfDown.position);
+        //Debug.Log("Local Down at "+localDown);
+    
         if( Input.GetKey("d"))
         {
-            //MOVE LEFT
-            Debug.Log("right"+transform.right);
-            rb.AddForce(transform.right*lateralspeed);
-            //transform.SetPositionAndRotation(transform.TransformPoint(transform.localPosition+(Vector3.right*lateralspeed)), transform.rotation);
-            //rb.AddForce(-lateralforce*Time.deltaTime,0,0);
+            moveLeft();
         }
         if( Input.GetKey("a"))
         {
-            //MOVE RIGHT
-            Debug.Log("left"+-transform.right);
-            rb.AddForce((-transform.right)*lateralspeed);
-            //rb.AddForce(lateralforce*Time.deltaTime,0,0);
+            moveRight();
         }
         if( Input.GetKey("w"))
         {
-            //FORWARD
-            rb.AddForce(transform.forward*lateralspeed);
+            moveForward();
         }
         if( Input.GetKey("s"))
         {
-            //BACK
-            rb.AddForce((-transform.forward)*lateralspeed);
+            moveBack();
         }
-        if( Input.GetKey("space"))
+        if( Input.GetKeyDown("space"))
         {
-            //JUMP
-            rb.AddForce(Vector3.up*vertical_speed);
+            moveUp();
         }
         if( Input.GetKey("q"))
         {
-            //COUNTER CLOCKWISE - LEFT TURN
-            transform.RotateAround(transform.position, Vector3.up, 30*Time.deltaTime);
+            leftTurn();
         }
         if( Input.GetKey("e"))
         {
-            //COUNTER CLOCKWISE - RIGHT TURN
-            transform.RotateAround(transform.position, Vector3.up, -30*Time.deltaTime);
+            rightTurn();
         }
+        if( Input.GetKey("f"))
+        {
+            tiltUpBack();
+        }
+        if( Input.GetKey("r"))
+        {
+            tiltDownForward();
+        }
+
+        headsUp();
+        // Keep player head up
+
+    }
+
+    void headsUp()
+    {
+        if(transform.rotation.x > 1 || transform.rotation.x < -1)
+        {
+            //force x toward 0
+            //transform.SetPositionAndRotation(Vector3.Vector3());
+        }
+        if(transform.rotation.z > 1 || transform.rotation.z < -1)
+        {
+            //force z toward 0
+            //transform.SetPositionAndRotation(Vector3.Vector3());
+        }
+    }
+    void tiltDownForward()
+    {
+        transform.RotateAround(transform.position, -transform.right, -60*Time.deltaTime);
+    }
+    void tiltUpBack()
+    {
+        transform.RotateAround(transform.position, transform.right, -60*Time.deltaTime);
+    }
+    void rightTurn()
+    {
+        transform.RotateAround(transform.position, transform.up, -60*Time.deltaTime);
+    }
+    void leftTurn()
+    {
+        transform.RotateAround(transform.position, transform.up, 60*Time.deltaTime);
+    }
+    void moveForward()
+    {
+        rb.AddForce(transform.forward*speedModifier);
+    }
+    void moveBack()
+    {
+        rb.AddForce((-transform.forward)*speedModifier);
+    }
+
+    void moveRight()
+    {
+        //Debug.Log("left"+-transform.right);
+        rb.AddForce((-transform.right)*speedModifier);
+    }
+    void moveLeft()
+    {
+        //Debug.Log("right"+transform.right);
+        rb.AddForce(transform.right*speedModifier);
+    
+    }
+    void moveUp()
+    {
+        rb.AddForce(-transform.up*speedModifier*100);
     }
 }
 

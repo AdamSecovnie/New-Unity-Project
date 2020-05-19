@@ -15,6 +15,6 @@ public class groundshift : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.AddForce(0,0, 0);
+        //rb.AddForce(Vector3.up*0.0001f);
     }
 }
