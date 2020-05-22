@@ -17,11 +17,11 @@ MonoBehaviour:
   - enabled: 1
     useFirstLayerAsMask: 0
     noiseSettings:
-      strength: 0.25
+      strength: 0.1
       numLayers: 3
-      baseRoughness: 1.5
-      roughness: 8
-      persistence: 0.35
+      baseRoughness: 5
+      roughness: 20
+      persistence: 0.6
       center: {x: 0, y: 0, z: 0}
       minValue: 0.98
   - enabled: 1
