@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Transform transformOfDown;
 
     public float speedModifier = 40f;
-
+    public float verticalSpeedModifier = 500f;
     void Start()
     {
         this.rb = this.gameObject.GetComponent<Rigidbody>();
@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void moveUp()
     {
-        rb.AddForce(-transform.up*speedModifier*100);
+        rb.AddForce(-transform.up*speedModifier*verticalSpeedModifier);
     }
 }
 
